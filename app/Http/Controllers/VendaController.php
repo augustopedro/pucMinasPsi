@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 
 class VendaController extends Controller
 {
-    protected function createAnimal()
+    protected function createVenda()
     {
     	$data = Input::all();
 
@@ -16,23 +16,23 @@ class VendaController extends Controller
         try
         {
             DB::beginTransaction();
-            $subject = $this->setSubjectData();
-            $subject = $this->saveSubject($subject);
+            $venda = $this->setVendaData();
+            $venda->save();
             DB::commit();
-            return HTTPErrorMessages::okMessageResponse($subject);
+            return $venda;
         }
         catch(Exception $e)
         {
             Log::error($e);
         }
     }
-    protected function findAnimal()
+    protected function findVenda()
     {
         try
         {
         	$id = Input::get('id');
-        	$user = User::find($id);
-            return HTTPErrorMessages::okMessageResponse($user);
+        	$venda = Venda::find($id);
+            return $venda;
 
         }
         catch(Exception $e) 
@@ -40,33 +40,44 @@ class VendaController extends Controller
             Log::error($e);
         }        
     }
-    protected function updateAnimal()
+    protected function updateVenda()
     {
         $data =Input::all();    
         try
         {                                       
-        	$user = User::find(Input::get('id')); 
-            $user = $this->makeUpdate($user);
-            $user = $this->saveUser($user);
-            return HTTPErrorMessages::okMessageResponse($user);
+        	$venda = Venda::find(Input::get('id')); 
+            $venda = $this->makeUpdate($venda);
+            $venda->save()
+            return $venda;
         }
         catch(Exception $e) 
         {
             Log::error($e);
         }
     }
-    protected function deleteAnimal($id)
+    protected function deleteVenda($id)
     {
         try
         {
-        	$user = User::find($id); 
-            $user->status = Consts::INACTIVE;
-            $this->saveUser($user);
-            return HTTPErrorMessages::okMessageResponse($user);
+        	$venda = Venda::find($id); 
+            $venda->status = Consts::INACTIVE;
+            $venda->save()
+            return $venda;
         }
         catch(Exception $e)
         {
             Log::error($e);
         }
+    }
+    protected function setVendaData($venda='')
+    {
+        if(empty($venda))
+        $venda = new Venda();    
+        
+        if(!empty($clientes_id = Input::get('clientes_id')))
+        {
+            $venda->clientes_id = $clientes_id;
+        }
+        return $venda;
     }
 }

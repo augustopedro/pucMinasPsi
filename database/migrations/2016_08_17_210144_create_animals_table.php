@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Http\Util\Consts;
 
 class CreateAnimalsTable extends Migration
 {
@@ -20,6 +21,7 @@ class CreateAnimalsTable extends Migration
             $table->integer('clientes_id')->unsigned()->nullable();
             $table->foreign('clientes_id')->references('id')->on('clientes');
             $table->enum('sexo',array('Masc','Fem'))->nullable();
+            $table->integer('status')->default(Consts::ACTIVE); 
             $table->timestamps();
         });
     }

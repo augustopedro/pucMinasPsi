@@ -3,70 +3,117 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 
 class ClienteController extends Controller
 {
-    protected function createAnimal()
+    protected function createCliente()
     {
-    	$data = Input::all();
-
-        
+        $data = Input::all();
         try
         {
             DB::beginTransaction();
-            $subject = $this->setSubjectData();
-            $subject = $this->saveSubject($subject);
+            $cliente = $this->setSubjectData();
+            $cliente->save();
             DB::commit();
-            return HTTPErrorMessages::okMessageResponse($subject);
+            return $cliente;
         }
         catch(Exception $e)
         {
             Log::error($e);
         }
     }
-    protected function findAnimal()
+    protected function findCliente()
     {
         try
         {
-        	$id = Input::get('id');
-        	$user = User::find($id);
-            return HTTPErrorMessages::okMessageResponse($user);
-
+            $id = Input::get('id');
+            $cliente = Cliente::find($id);
+            return $cliente;
         }
         catch(Exception $e) 
         {
             Log::error($e);
         }        
     }
-    protected function updateAnimal()
+    protected function updateCliente()
     {
         $data =Input::all();    
         try
         {                                       
-        	$user = User::find(Input::get('id')); 
-            $user = $this->makeUpdate($user);
-            $user = $this->saveUser($user);
-            return HTTPErrorMessages::okMessageResponse($user);
+            $cliente = Cliente::find(Input::get('id')); 
+            $cliente = $this->makeUpdate($cliente);
+            $cliente->save();
+            return $cliente;
         }
         catch(Exception $e) 
         {
             Log::error($e);
         }
     }
-    protected function deleteAnimal($id)
+    protected function deleteCliente($id)
     {
         try
         {
-        	$user = User::find($id); 
-            $user->status = Consts::INACTIVE;
-            $this->saveUser($user);
-            return HTTPErrorMessages::okMessageResponse($user);
+            $cliente = Cliente::find($id); 
+            $cliente->status = Consts::INACTIVE;
+            $cliente->save();
+            return $cliente;
         }
         catch(Exception $e)
         {
             Log::error($e);
         }
+    }
+    protected function setClienteData($cliente='')
+    {
+        if(empty($cliente))
+        $cliente = new Cliente();    
+        if(!empty($nome = Input::get('nome')))
+        {
+            $cliente->nome = $name;
+        }
+        if(!empty($telefone = Input::get('telefone')))
+        {
+            $cliente->telefone = $telefone;
+        }
+        if(!empty($celular = Input::get('celular')))
+        {
+            $cliente->celular = $celular;
+        }
+        if(!empty($numero = Input::get('numero')))
+        {
+            $cliente->numero = $numero;
+        }
+        if(!empty($complemento = Input::get('complemento')))
+        {
+            $cliente->complemento = $complemento;
+        }
+        if(!empty($rua = Input::get('rua')))
+        {
+            $cliente->rua = $rua;
+        }
+        if(!empty($bairro = Input::get('bairro')))
+        {
+            $cliente->bairro = $bairro;
+        }
+        if(!empty($cidade = Input::get('cidade')))
+        {
+            $cliente->cidade = $cidade;
+        }
+        if(!empty($cpf = Input::get('cpf')))
+        {
+            $cliente->cpf = $cpfß;
+        }
+        if(!empty($aniversario = Input::get('aniversario')))
+        {
+            $cliente->aniversario = $aniversario;
+        }
+        if(!empty($sexo = Input::get('sexo')))
+        {
+            $cliente->sexo = $sexo;
+        }
+        return $cliente;
     }
 }

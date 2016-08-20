@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 
 class AnimalController extends Controller
@@ -11,15 +11,13 @@ class AnimalController extends Controller
     protected function createAnimal()
     {
     	$data = Input::all();
-
-        
         try
         {
             DB::beginTransaction();
-            $subject = $this->setSubjectData();
-            $subject = $this->saveSubject($subject);
+            $animal = $this->setSubjectData();
+            $animal = $this->saveSubject($animal);
             DB::commit();
-            return HTTPErrorMessages::okMessageResponse($subject);
+            return $animal;
         }
         catch(Exception $e)
         {
@@ -31,9 +29,8 @@ class AnimalController extends Controller
         try
         {
         	$id = Input::get('id');
-        	$user = User::find($id);
-            return HTTPErrorMessages::okMessageResponse($user);
-
+        	$animal = Animal::find($id);
+            return $animal;
         }
         catch(Exception $e) 
         {
@@ -45,10 +42,10 @@ class AnimalController extends Controller
         $data =Input::all();    
         try
         {                                       
-        	$user = User::find(Input::get('id')); 
-            $user = $this->makeUpdate($user);
-            $user = $this->saveUser($user);
-            return HTTPErrorMessages::okMessageResponse($user);
+        	$animal = Cliente::find(Input::get('id')); 
+            $animal = $this->makeUpdate($animal);
+            $animal = $this->saveUser($animal);
+            return $animal;
         }
         catch(Exception $e) 
         {
@@ -59,14 +56,40 @@ class AnimalController extends Controller
     {
         try
         {
-        	$user = User::find($id); 
-            $user->status = Consts::INACTIVE;
-            $this->saveUser($user);
-            return HTTPErrorMessages::okMessageResponse($user);
+        	$animal = Animal::find($id); 
+            $animal->status = Consts::INACTIVE;
+            $this->saveUser($animal);
+            return $animal;
         }
         catch(Exception $e)
         {
             Log::error($e);
         }
+    }
+    protected function setAnimalData($animal='')
+    {
+        if(empty($animal))
+        $animal = new Animal();    
+        if(!empty($nome = Input::get('nome')))
+        {
+            $animal->nome = $name;
+        }
+        if(!empty($raca = Input::get('raca`')))
+        {
+            $animal->raca = $raca;
+        }
+        if(!empty($aniversario = Input::get('aniversario')))
+        {
+            $animal->aniversario = $aniversario;
+        }
+        if(!empty($clientes_id = Input::get('clientes_id')))
+        {
+            $animal->clientes_id = $clientes_id;
+        }
+        if(!empty($sexo = Input::get('sexo')))
+        {
+            $animal->sexo = $sexo;
+        }
+        return $animal;
     }
 }

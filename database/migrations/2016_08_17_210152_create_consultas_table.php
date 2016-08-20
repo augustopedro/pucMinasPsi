@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Http\Util\Consts;
 
 class CreateConsultasTable extends Migration
 {
@@ -19,6 +20,7 @@ class CreateConsultasTable extends Migration
             $table->foreign('veterinarios_id')->references('id')->on('veterinarios');
             $table->integer('animals_id')->unsigned();
             $table->foreign('animals_id')->references('id')->on('animals');
+            $table->integer('status')->default(Consts::ACTIVE); 
             $table->timestamps();
         });
     }

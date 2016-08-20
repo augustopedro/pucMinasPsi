@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Http\Util\Consts;
 
 class CreateVendasTable extends Migration
 {
@@ -16,6 +17,7 @@ class CreateVendasTable extends Migration
             $table->increments('id');
             $table->integer('clientes_id')->unsigned()->nullable();
             $table->foreign('clientes_id')->references('id')->on('clientes');
+            $table->integer('status')->default(Consts::ACTIVE); 
             $table->timestamps();
         });
     }

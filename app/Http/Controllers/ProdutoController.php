@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 
 class ProdutoController extends Controller
 {
-    protected function createAnimal()
+    protected function createProduto()
     {
     	$data = Input::all();
 
@@ -16,23 +16,23 @@ class ProdutoController extends Controller
         try
         {
             DB::beginTransaction();
-            $subject = $this->setSubjectData();
-            $subject = $this->saveSubject($subject);
+            $produto = $this->setProdutoData();
+            $produto->save();
             DB::commit();
-            return HTTPErrorMessages::okMessageResponse($subject);
+            return $produto;
         }
         catch(Exception $e)
         {
             Log::error($e);
         }
     }
-    protected function findAnimal()
+    protected function findProduto()
     {
         try
         {
         	$id = Input::get('id');
-        	$user = User::find($id);
-            return HTTPErrorMessages::okMessageResponse($user);
+        	$produto = Produto::find($id);
+            return $produto;
 
         }
         catch(Exception $e) 
@@ -40,33 +40,48 @@ class ProdutoController extends Controller
             Log::error($e);
         }        
     }
-    protected function updateAnimal()
+    protected function updateProduto()
     {
         $data =Input::all();    
         try
         {                                       
-        	$user = User::find(Input::get('id')); 
-            $user = $this->makeUpdate($user);
-            $user = $this->saveUser($user);
-            return HTTPErrorMessages::okMessageResponse($user);
+        	$produto = Produto::find(Input::get('id')); 
+            $produto = $this->makeUpdate($produto);
+            $produto->save();
+            return $produto;
         }
         catch(Exception $e) 
         {
             Log::error($e);
         }
     }
-    protected function deleteAnimal($id)
+    protected function deleteProduto($id)
     {
         try
         {
-        	$user = User::find($id); 
-            $user->status = Consts::INACTIVE;
-            $this->saveUser($user);
-            return HTTPErrorMessages::okMessageResponse($user);
+        	$produto = Produto::find($id); 
+            $produto->status = Consts::INACTIVE;
+            $this->saveProduto($produto);
+            return $produto;
         }
         catch(Exception $e)
         {
             Log::error($e);
         }
+    }
+    protected function setProdutoData($produto='')
+    {
+        if(empty($produto))
+        $produto = new Produto();    
+        
+        if(!empty($descricao = Input::get('descricao')))
+        {
+            $produto->descricao = $descricao;
+        }
+        if(!empty($price = Input::get('price')))
+        {
+            $produto->price = $price;
+        }
+        return $produto;
     }
 }

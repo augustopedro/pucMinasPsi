@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Http\Util\Consts;
 
 class CreateClientesTable extends Migration
 {
@@ -27,6 +28,7 @@ class CreateClientesTable extends Migration
             $table->string('cpf')->nullable();
             $table->date('aniversario')->nullable();
             $table->enum('sexo',array('Masc','Fem','None'))->nullable();
+            $table->integer('status')->default(Consts::ACTIVE); 
             $table->timestamps();
         });
     }
