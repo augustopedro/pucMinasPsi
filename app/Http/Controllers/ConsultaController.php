@@ -7,15 +7,12 @@ use App\Http\Requests;
 
 class ConsultaController extends Controller
 {
-    protected function createConsulta()
+	protected function adicionarConsulta()
     {
-        $data = Input::all();
-        try
+    	try
         {
-            DB::beginTransaction();
-            $consulta = $this->setSubjectData();
-            $consulta->save();
-            DB::commit();
+            $consulta = new ConsultaDAO;
+        	$consulta->inserir();
             return $consulta;
         }
         catch(Exception $e)
@@ -23,41 +20,12 @@ class ConsultaController extends Controller
             Log::error($e);
         }
     }
-    protected function findConsulta()
+    protected function procurarConsulta($id)
     {
         try
         {
-            $id = Input::get('id');
-            $consulta = Consulta::find($id);
-            return $consulta;
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }        
-    }
-    protected function updateConsulta()
-    {
-        $data =Input::all();    
-        try
-        {                                       
-            $consulta = Consulta::find(Input::get('id')); 
-            $consulta = $this->makeUpdate($consulta);
-            $consulta->save();
-            return $consulta;
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }
-    }
-    protected function deleteConsulta($id)
-    {
-        try
-        {
-            $consulta = Consulta::find($id); 
-            $consulta->status = Consts::INACTIVE;
-            $consulta->save();
+            $consulta = new ConsultaDAO;
+            $consulta->consultar();
             return $consulta;
         }
         catch(Exception $e)
@@ -65,22 +33,30 @@ class ConsultaController extends Controller
             Log::error($e);
         }
     }
-    protected function setConsultaData($consulta='')
+    protected function alterarConsulta()
     {
-        if(empty($consulta))
-        $consulta = new Consulta();    
-        if(!empty($data = Input::get('data')))
+        try
         {
-            $consulta->data = $data;
+            $consulta = new ConsultaDAO;
+            $consulta->alterar();
+            return $consulta;
         }
-        if(!empty($veterinarios_id = Input::get('veterinarios_id')))
+        catch(Exception $e)
         {
-            $consulta->veterinarios_id = $veterinarios_id;
+            Log::error($e);
         }
-        if(!empty($animals_id = Input::get('animals_id')))
+    }
+    protected function deletarConsulta($id)
+    {
+        try
         {
-            $consulta->animals_id = $animals_id;
+            $consulta = new ConsultaDAO;
+            $consulta->deletar($id);
+            return $consulta;
         }
-        return $consulta;
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
     }
 }

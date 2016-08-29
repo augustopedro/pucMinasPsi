@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+Route::post('animal','AnimalController@addNewAnimal');
+Route::post('cliente','ClienteController@addNewCliente');
+
+
+Route::get('/', function () 
+{
     return view('welcome');
 });

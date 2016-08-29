@@ -8,17 +8,26 @@ use App\Http\Requests;
 
 class VendaController extends Controller
 {
-    protected function createVenda()
+    protected function adicionarVenda()
     {
-    	$data = Input::all();
-
-        
         try
         {
-            DB::beginTransaction();
-            $venda = $this->setVendaData();
-            $venda->save();
-            DB::commit();
+            $venda = new VendaDAO;
+            $venda->inserir();
+            return $venda;
+        }
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
+        
+    }
+    protected function procurarVenda($id)
+    {
+        try
+        {
+            $venda = new VendaDAO;
+            $venda->Vendar();
             return $venda;
         }
         catch(Exception $e)
@@ -26,42 +35,12 @@ class VendaController extends Controller
             Log::error($e);
         }
     }
-    protected function findVenda()
+    protected function alterarVenda()
     {
         try
         {
-        	$id = Input::get('id');
-        	$venda = Venda::find($id);
-            return $venda;
-
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }        
-    }
-    protected function updateVenda()
-    {
-        $data =Input::all();    
-        try
-        {                                       
-        	$venda = Venda::find(Input::get('id')); 
-            $venda = $this->makeUpdate($venda);
-            $venda->save()
-            return $venda;
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }
-    }
-    protected function deleteVenda($id)
-    {
-        try
-        {
-        	$venda = Venda::find($id); 
-            $venda->status = Consts::INACTIVE;
-            $venda->save()
+            $venda = new VendaDAO;
+            $venda->alterar();
             return $venda;
         }
         catch(Exception $e)
@@ -69,15 +48,17 @@ class VendaController extends Controller
             Log::error($e);
         }
     }
-    protected function setVendaData($venda='')
+    protected function deletarVenda($id)
     {
-        if(empty($venda))
-        $venda = new Venda();    
-        
-        if(!empty($clientes_id = Input::get('clientes_id')))
+        try
         {
-            $venda->clientes_id = $clientes_id;
+            $venda = new VendaDAO;
+            $venda->deletar($id);
+            return $venda;
         }
-        return $venda;
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
     }
 }

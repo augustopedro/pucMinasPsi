@@ -5,18 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
+use App\Http\DAO\AnimalDAO;
+use Log;
 
 class AnimalController extends Controller
 {
-    protected function createAnimal()
+    protected function adicionarAnimal()
     {
-    	$data = Input::all();
+    	try
+        {
+            $animal = new AnimalDAO;
+        	$animal->inserir();
+            return $animal;
+        }
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
+        
+    }
+    protected function procurarAnimal($id)
+    {
         try
         {
-            DB::beginTransaction();
-            $animal = $this->setSubjectData();
-            $animal = $this->saveSubject($animal);
-            DB::commit();
+            $animal = new AnimalDAO;
+            $animal->consultar();
             return $animal;
         }
         catch(Exception $e)
@@ -24,41 +37,12 @@ class AnimalController extends Controller
             Log::error($e);
         }
     }
-    protected function findAnimal()
+    protected function alterarAnimal()
     {
         try
         {
-        	$id = Input::get('id');
-        	$animal = Animal::find($id);
-            return $animal;
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }        
-    }
-    protected function updateAnimal()
-    {
-        $data =Input::all();    
-        try
-        {                                       
-        	$animal = Cliente::find(Input::get('id')); 
-            $animal = $this->makeUpdate($animal);
-            $animal = $this->saveUser($animal);
-            return $animal;
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }
-    }
-    protected function deleteAnimal($id)
-    {
-        try
-        {
-        	$animal = Animal::find($id); 
-            $animal->status = Consts::INACTIVE;
-            $this->saveUser($animal);
+            $animal = new AnimalDAO;
+            $animal->alterar();
             return $animal;
         }
         catch(Exception $e)
@@ -66,30 +50,17 @@ class AnimalController extends Controller
             Log::error($e);
         }
     }
-    protected function setAnimalData($animal='')
+    protected function deletarAnimal($id)
     {
-        if(empty($animal))
-        $animal = new Animal();    
-        if(!empty($nome = Input::get('nome')))
+        try
         {
-            $animal->nome = $name;
+            $animal = new AnimalDAO;
+            $animal->deletar($id);
+            return $animal;
         }
-        if(!empty($raca = Input::get('raca`')))
+        catch(Exception $e)
         {
-            $animal->raca = $raca;
+            Log::error($e);
         }
-        if(!empty($aniversario = Input::get('aniversario')))
-        {
-            $animal->aniversario = $aniversario;
-        }
-        if(!empty($clientes_id = Input::get('clientes_id')))
-        {
-            $animal->clientes_id = $clientes_id;
-        }
-        if(!empty($sexo = Input::get('sexo')))
-        {
-            $animal->sexo = $sexo;
-        }
-        return $animal;
     }
 }

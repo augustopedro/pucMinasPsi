@@ -8,17 +8,12 @@ use App\Http\Requests;
 
 class ProdutoController extends Controller
 {
-    protected function createProduto()
+    protected function adicionarProduto()
     {
-    	$data = Input::all();
-
-        
         try
         {
-            DB::beginTransaction();
-            $produto = $this->setProdutoData();
-            $produto->save();
-            DB::commit();
+            $produto = new ProdutoDAO;
+            $produto->inserir();
             return $produto;
         }
         catch(Exception $e)
@@ -26,42 +21,12 @@ class ProdutoController extends Controller
             Log::error($e);
         }
     }
-    protected function findProduto()
+    protected function procurarProduto($id)
     {
         try
         {
-        	$id = Input::get('id');
-        	$produto = Produto::find($id);
-            return $produto;
-
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }        
-    }
-    protected function updateProduto()
-    {
-        $data =Input::all();    
-        try
-        {                                       
-        	$produto = Produto::find(Input::get('id')); 
-            $produto = $this->makeUpdate($produto);
-            $produto->save();
-            return $produto;
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }
-    }
-    protected function deleteProduto($id)
-    {
-        try
-        {
-        	$produto = Produto::find($id); 
-            $produto->status = Consts::INACTIVE;
-            $this->saveProduto($produto);
+            $produto = new ProdutoDAO;
+            $produto->Produtor();
             return $produto;
         }
         catch(Exception $e)
@@ -69,19 +34,30 @@ class ProdutoController extends Controller
             Log::error($e);
         }
     }
-    protected function setProdutoData($produto='')
+    protected function alterarProduto()Ï
     {
-        if(empty($produto))
-        $produto = new Produto();    
-        
-        if(!empty($descricao = Input::get('descricao')))
+        try
         {
-            $produto->descricao = $descricao;
+            $produto = new ProdutoDAO;
+            $produto->alterar();
+            return $produto;
         }
-        if(!empty($price = Input::get('price')))
+        catch(Exception $e)
         {
-            $produto->price = $price;
+            Log::error($e);
         }
-        return $produto;
+    }
+    protected function deletarProduto($id)
+    {
+        try
+        {
+            $produto = new ProdutoDAO;
+            $produto->deletar($id);
+            return $produto;
+        }
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
     }
 }

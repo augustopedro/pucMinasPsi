@@ -3,20 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\Http\Requests;
+use App\Http\DAO\ClienteDAO;
+use Log;
+
 
 class ClienteController extends Controller
 {
-    protected function createCliente()
+    protected function adicionarCliente()
     {
-        $data = Input::all();
+    	try
+        {
+            $cliente = new ClienteDAO;
+        	$cliente->inserir();
+            return $cliente;
+        }
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
+        
+    }
+    protected function procurarCliente($id)
+    {
         try
         {
-            DB::beginTransaction();
-            $cliente = $this->setSubjectData();
-            $cliente->save();
-            DB::commit();
+            $cliente = new ClienteDAO;
+            $cliente->consultar();
             return $cliente;
         }
         catch(Exception $e)
@@ -24,41 +37,12 @@ class ClienteController extends Controller
             Log::error($e);
         }
     }
-    protected function findCliente()
+    protected function alterarCliente()
     {
         try
         {
-            $id = Input::get('id');
-            $cliente = Cliente::find($id);
-            return $cliente;
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }        
-    }
-    protected function updateCliente()
-    {
-        $data =Input::all();    
-        try
-        {                                       
-            $cliente = Cliente::find(Input::get('id')); 
-            $cliente = $this->makeUpdate($cliente);
-            $cliente->save();
-            return $cliente;
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }
-    }
-    protected function deleteCliente($id)
-    {
-        try
-        {
-            $cliente = Cliente::find($id); 
-            $cliente->status = Consts::INACTIVE;
-            $cliente->save();
+            $cliente = new ClienteDAO;
+            $cliente->alterar();
             return $cliente;
         }
         catch(Exception $e)
@@ -66,54 +50,17 @@ class ClienteController extends Controller
             Log::error($e);
         }
     }
-    protected function setClienteData($cliente='')
+    protected function deletarCliente($id)
     {
-        if(empty($cliente))
-        $cliente = new Cliente();    
-        if(!empty($nome = Input::get('nome')))
+        try
         {
-            $cliente->nome = $name;
+            $cliente = new ClienteDAO;
+            $cliente->deletar($id);
+            return $cliente;
         }
-        if(!empty($telefone = Input::get('telefone')))
+        catch(Exception $e)
         {
-            $cliente->telefone = $telefone;
+            Log::error($e);
         }
-        if(!empty($celular = Input::get('celular')))
-        {
-            $cliente->celular = $celular;
-        }
-        if(!empty($numero = Input::get('numero')))
-        {
-            $cliente->numero = $numero;
-        }
-        if(!empty($complemento = Input::get('complemento')))
-        {
-            $cliente->complemento = $complemento;
-        }
-        if(!empty($rua = Input::get('rua')))
-        {
-            $cliente->rua = $rua;
-        }
-        if(!empty($bairro = Input::get('bairro')))
-        {
-            $cliente->bairro = $bairro;
-        }
-        if(!empty($cidade = Input::get('cidade')))
-        {
-            $cliente->cidade = $cidade;
-        }
-        if(!empty($cpf = Input::get('cpf')))
-        {
-            $cliente->cpf = $cpfß;
-        }
-        if(!empty($aniversario = Input::get('aniversario')))
-        {
-            $cliente->aniversario = $aniversario;
-        }
-        if(!empty($sexo = Input::get('sexo')))
-        {
-            $cliente->sexo = $sexo;
-        }
-        return $cliente;
     }
 }

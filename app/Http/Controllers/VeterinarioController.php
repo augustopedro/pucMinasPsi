@@ -8,78 +8,57 @@ use App\Http\Requests;
 
 class VeterinarioController extends Controller
 {
-    protected function createVeterinario()
+    protected function adicionarConsulta()
     {
-    	$data = Input::all();
         try
         {
-            DB::beginTransaction();
-            $veterinario = $this->setVeterinarioData();
-            $veterinario->save();
-            DB::commit();
+            $veterinario = new VeterinarioDAO;
+            $veterinario->inserir();
             return $veterinario;
         }
         catch(Exception $e)
         {
             Log::error($e);
         }
-    }
-    protected function findVeterinario()
-    {
-        try
-        {
-        	$id = Input::get('id');
-        	$veterinario = Veterinario::find($id);
-            return $veterinario;
-
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }        
-    }
-    protected function updateVeterinario()
-    {
-        $data =Input::all();    
-        try
-        {                                       
-        	$veterinario = Veterinario::find(Input::get('id')); 
-            $veterinario = $this->makeUpdate($veterinario);
-            $veterinario->save();
-            return $veterinario;
-        }
-        catch(Exception $e) 
-        {
-            Log::error($e);
-        }
-    }
-    protected function deleteVeterinario($id)
-    {
-        try
-        {
-        	$veterinario = Veterinario::find($id); 
-            $veterinario->status = Consts::INACTIVE;
-            $veterinario->save();
-            return $veterinario;
-        }
-        catch(Exception $e)
-        {
-            Log::error($e);
-        }
-    }
-    protected function setVeterinarioData($veterinario='')
-    {
-        if(empty($veterinario))
-        $veterinario = new Veterinario();    
         
-        if(!empty($ctps = Input::get('ctps')))
+    }
+    protected function procurarConsulta($id)
+    {
+        try
         {
-            $veterinario->ctps = $ctps;
+            $veterinario = new VeterinarioDAO;
+            $veterinario->consultar();
+            return $veterinario;
         }
-        if(!empty($clientes_id = Input::get('clientes_id')))
+        catch(Exception $e)
         {
-            $veterinario->clientes_id = $clientes_id;
+            Log::error($e);
         }
-        return $veterinario;
+    }
+    protected function alterarConsulta()
+    {
+        try
+        {
+            $veterinario = new VeterinarioDAO;
+            $veterinario->alterar();
+            return $veterinario;
+        }
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
+    }
+    protected function deletarConsulta($id)
+    {
+        try
+        {
+            $veterinario = new VeterinarioDAO;
+            $veterinario->deletar($id);
+            return $veterinario;
+        }
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
     }
 }
