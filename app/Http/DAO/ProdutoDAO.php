@@ -43,7 +43,7 @@ class ProdutoDAO implements DAO
         try
         {                                       
         	$produto = Produto::find(Input::get('id')); 
-            $produto = $this->makeUpdate($produto);
+            $produto = $this->setData($produto);
             $produto->save();
             return $produto;
         }
@@ -58,7 +58,7 @@ class ProdutoDAO implements DAO
         {
         	$produto = Produto::find($id); 
             $produto->status = Consts::INACTIVE;
-            $this->saveProduto($produto);
+            $produto->save();
             return $produto;
         }
         catch(Exception $e)

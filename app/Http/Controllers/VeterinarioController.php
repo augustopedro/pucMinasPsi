@@ -12,8 +12,8 @@ class VeterinarioController extends Controller
     {
         try
         {
-            $veterinario = new VeterinarioDAO;
-            $veterinario->inserir();
+            $veterinarioDAO = new VeterinarioDAO;
+            $veterinario = $veterinarioDAO->inserir();
             return $veterinario;
         }
         catch(Exception $e)
@@ -26,8 +26,8 @@ class VeterinarioController extends Controller
     {
         try
         {
-            $veterinario = new VeterinarioDAO;
-            $veterinario->consultar();
+            $veterinarioDAO = new VeterinarioDAO;
+            $veterinario = $veterinarioDAO->consultar();
             return $veterinario;
         }
         catch(Exception $e)
@@ -39,8 +39,8 @@ class VeterinarioController extends Controller
     {
         try
         {
-            $veterinario = new VeterinarioDAO;
-            $veterinario->alterar();
+            $veterinarioDAO = new VeterinarioDAO;
+            $veterinario = $veterinarioDAO->alterar();
             return $veterinario;
         }
         catch(Exception $e)
@@ -52,8 +52,8 @@ class VeterinarioController extends Controller
     {
         try
         {
-            $veterinario = new VeterinarioDAO;
-            $veterinario->deletar($id);
+            $veterinarioDAO = new VeterinarioDAO;
+            $veterinario = $veterinarioDAO->deletar($id);
             return $veterinario;
         }
         catch(Exception $e)

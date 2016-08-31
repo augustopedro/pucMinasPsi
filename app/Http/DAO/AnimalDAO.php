@@ -14,8 +14,8 @@ class AnimalDAO implements DAO
         try
         {
             DB::beginTransaction();
-            $animal = $this->setSubjectData();
-            $animal = $this->saveSubject($animal);
+            $animal = $this->setData();
+            $this->save();
             DB::commit();
             return $animal;
         }
@@ -42,9 +42,9 @@ class AnimalDAO implements DAO
         $data =Input::all();    
         try
         {                                       
-        	$animal = Cliente::find(Input::get('id')); 
-            $animal = $this->makeUpdate($animal);
-            $animal = $this->saveUser($animal);
+        	$animal = Animal::find(Input::get('id')); 
+            $animal = $this->setData($animal);
+            $animal->save();
             return $animal;
         }
         catch(Exception $e) 

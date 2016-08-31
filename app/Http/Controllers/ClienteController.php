@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\DAO\ClienteDAO;
 use Log;
+use Illuminate\Support\Facades\Input;
 
 
 class ClienteController extends Controller
@@ -14,8 +15,8 @@ class ClienteController extends Controller
     {
     	try
         {
-            $cliente = new ClienteDAO;
-        	$cliente->inserir();
+            $clienteDAO = new ClienteDAO;
+        	$cliente = $clienteDAO->inserir();
             return $cliente;
         }
         catch(Exception $e)
@@ -28,8 +29,8 @@ class ClienteController extends Controller
     {
         try
         {
-            $cliente = new ClienteDAO;
-            $cliente->consultar();
+            $clienteDAO = new ClienteDAO;
+            $cliente = $clienteDAO->consultar();
             return $cliente;
         }
         catch(Exception $e)
@@ -41,8 +42,8 @@ class ClienteController extends Controller
     {
         try
         {
-            $cliente = new ClienteDAO;
-            $cliente->alterar();
+            $clienteDAO = new ClienteDAO;
+            $cliente = $clienteDAO->alterar();
             return $cliente;
         }
         catch(Exception $e)
@@ -54,8 +55,8 @@ class ClienteController extends Controller
     {
         try
         {
-            $cliente = new ClienteDAO;
-            $cliente->deletar($id);
+            $clienteDAO = new ClienteDAO;
+            $cliente = $clienteDAO->deletar($id);
             return $cliente;
         }
         catch(Exception $e)

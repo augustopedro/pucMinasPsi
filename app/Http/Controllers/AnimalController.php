@@ -14,8 +14,8 @@ class AnimalController extends Controller
     {
     	try
         {
-            $animal = new AnimalDAO;
-        	$animal->inserir();
+            $animalDAO = new AnimalDAO;
+        	$animal = $animalDAO->inserir();
             return $animal;
         }
         catch(Exception $e)
@@ -28,8 +28,8 @@ class AnimalController extends Controller
     {
         try
         {
-            $animal = new AnimalDAO;
-            $animal->consultar();
+            $animalDAO = new AnimalDAO;
+            $animal = $animalDAO->consultar();
             return $animal;
         }
         catch(Exception $e)
@@ -41,8 +41,8 @@ class AnimalController extends Controller
     {
         try
         {
-            $animal = new AnimalDAO;
-            $animal->alterar();
+            $animalDAO = new AnimalDAO;
+            $animal = $animalDAO->alterar();
             return $animal;
         }
         catch(Exception $e)
@@ -54,8 +54,8 @@ class AnimalController extends Controller
     {
         try
         {
-            $animal = new AnimalDAO;
-            $animal->deletar($id);
+            $animalDAO = new AnimalDAO;
+            $animal = $animalDAO->deletar($id);
             return $animal;
         }
         catch(Exception $e)

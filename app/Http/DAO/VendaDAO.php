@@ -46,7 +46,7 @@ class VendaDAO implements DAO
         try
         {                                       
         	$venda = Venda::find(Input::get('id')); 
-            $venda = $this->makeUpdate($venda);
+            $venda = $this->setData($venda);
             $venda->save()
             return $venda;
         }
@@ -61,7 +61,7 @@ class VendaDAO implements DAO
         {
         	$venda = Venda::find($id); 
             $venda->status = Consts::INACTIVE;
-            $venda->save()
+            $venda->save();
             return $venda;
         }
         catch(Exception $e)

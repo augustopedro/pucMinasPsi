@@ -12,8 +12,8 @@ class ProdutoController extends Controller
     {
         try
         {
-            $produto = new ProdutoDAO;
-            $produto->inserir();
+            $produtoDAO = new ProdutoDAO;
+            $produto = $produtoDAO->inserir();
             return $produto;
         }
         catch(Exception $e)
@@ -25,8 +25,8 @@ class ProdutoController extends Controller
     {
         try
         {
-            $produto = new ProdutoDAO;
-            $produto->Produtor();
+            $produtoDAO = new ProdutoDAO;
+            $produto = $produtoDAO->Produtor();
             return $produto;
         }
         catch(Exception $e)
@@ -38,8 +38,8 @@ class ProdutoController extends Controller
     {
         try
         {
-            $produto = new ProdutoDAO;
-            $produto->alterar();
+            $produtoDAO = new ProdutoDAO;
+            $produto = $produtoDAO->alterar();
             return $produto;
         }
         catch(Exception $e)
@@ -51,8 +51,8 @@ class ProdutoController extends Controller
     {
         try
         {
-            $produto = new ProdutoDAO;
-            $produto->deletar($id);
+            $produtoDAO = new ProdutoDAO;
+            $produto = $produtoDAO->deletar($id);
             return $produto;
         }
         catch(Exception $e)

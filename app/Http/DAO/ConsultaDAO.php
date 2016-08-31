@@ -13,7 +13,7 @@ class ConsultaDAO implements DAO
         try
         {
             DB::beginTransaction();
-            $consulta = $this->setSubjectData();
+            $consulta = $this->setData();
             $consulta->save();
             DB::commit();
             return $consulta;
@@ -42,7 +42,7 @@ class ConsultaDAO implements DAO
         try
         {                                       
             $consulta = Consulta::find(Input::get('id')); 
-            $consulta = $this->makeUpdate($consulta);
+            $consulta = $this->setData($consulta);
             $consulta->save();
             return $consulta;
         }

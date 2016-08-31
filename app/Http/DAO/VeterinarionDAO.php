@@ -44,7 +44,7 @@ class VeterinarioDAO implements DAO
         try
         {                                       
         	$veterinario = Veterinario::find(Input::get('id')); 
-            $veterinario = $this->makeUpdate($veterinario);
+            $veterinario = $this->setData($veterinario);
             $veterinario->save();
             return $veterinario;
         }

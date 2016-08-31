@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\DAO\ConsultaDAO;
 
 class ConsultaController extends Controller
 {
@@ -11,8 +12,8 @@ class ConsultaController extends Controller
     {
     	try
         {
-            $consulta = new ConsultaDAO;
-        	$consulta->inserir();
+            $consultaDAO = new ConsultaDAO;
+        	$consulta = $consulta->inserir();
             return $consulta;
         }
         catch(Exception $e)
@@ -24,8 +25,8 @@ class ConsultaController extends Controller
     {
         try
         {
-            $consulta = new ConsultaDAO;
-            $consulta->consultar();
+            $consultaDAO = new ConsultaDAO;
+            $consulta = $consultaDAO->consultar();
             return $consulta;
         }
         catch(Exception $e)
@@ -37,8 +38,8 @@ class ConsultaController extends Controller
     {
         try
         {
-            $consulta = new ConsultaDAO;
-            $consulta->alterar();
+            $consultaDAO = new ConsultaDAO;
+            $consulta = $consultaDAO->alterar();
             return $consulta;
         }
         catch(Exception $e)
@@ -50,8 +51,8 @@ class ConsultaController extends Controller
     {
         try
         {
-            $consulta = new ConsultaDAO;
-            $consulta->deletar($id);
+            $consultaDAO = new ConsultaDAO;
+            $consulta = $consultaDAO->deletar($id);
             return $consulta;
         }
         catch(Exception $e)

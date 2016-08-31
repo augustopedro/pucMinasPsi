@@ -41,7 +41,7 @@ class ClienteDAO implements DAO
         try
         {                                       
             $cliente = Cliente::find(Input::get('id')); 
-            $cliente = $this->makeUpdate($cliente);
+            $cliente = $this->setData($cliente);
             $cliente->save();
             return $cliente;
         }
@@ -71,6 +71,10 @@ class ClienteDAO implements DAO
         if(!empty($nome = Input::get('nome')))
         {
             $cliente->nome = $nome;
+        }
+        if(!empty($email = Input::get('email')))
+        {
+            $cliente->email = $email;
         }
         if(!empty($telefone = Input::get('telefone')))
         {

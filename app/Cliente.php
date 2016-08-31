@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
     protected $table = 'clientes';
+
+    protected $hidden = array ('created_at','updated_at', 'id');
     public function animal()
     {
         return $this->hasMany('App\Animal');

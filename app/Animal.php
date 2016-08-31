@@ -8,6 +8,7 @@ class Animal extends Model
 {
 	protected $table = 'animals';
 	
+    
     public function cliente()
     {
         return $this->belongsTo('App\Cliente');

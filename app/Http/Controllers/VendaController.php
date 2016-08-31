@@ -12,8 +12,8 @@ class VendaController extends Controller
     {
         try
         {
-            $venda = new VendaDAO;
-            $venda->inserir();
+            $vendaDAO = new VendaDAO;
+            $venda = $vendaDAO->inserir();
             return $venda;
         }
         catch(Exception $e)
@@ -26,8 +26,8 @@ class VendaController extends Controller
     {
         try
         {
-            $venda = new VendaDAO;
-            $venda->Vendar();
+            $vendaDAO = new VendaDAO;
+            $venda = $vendaDAO->Vendar();
             return $venda;
         }
         catch(Exception $e)
@@ -39,8 +39,8 @@ class VendaController extends Controller
     {
         try
         {
-            $venda = new VendaDAO;
-            $venda->alterar();
+            $vendaDAO = new VendaDAO;
+            $venda = $vendaDAO->alterar();
             return $venda;
         }
         catch(Exception $e)
@@ -52,8 +52,8 @@ class VendaController extends Controller
     {
         try
         {
-            $venda = new VendaDAO;
-            $venda->deletar($id);
+            $vendaDAO = new VendaDAO;
+            $venda = $vendaDAO->deletar($id);
             return $venda;
         }
         catch(Exception $e)
