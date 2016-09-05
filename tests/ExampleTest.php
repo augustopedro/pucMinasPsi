@@ -11,11 +11,11 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    // public function testBasicExample()
-    // {
-    //     $this->visit('/')
-    //          ->see('Laravel 5');
-    // }
+    public function testBasicExample()
+    {
+        $this->visit('/')
+             ->see('Laravel 5');
+    }
 
      //Cadastrar Cliente
     public function testCreateCliente()
@@ -25,41 +25,28 @@ class ExampleTest extends TestCase
     }
 
     //Deletar Cliente
-    // public function testDeleteCliente()
-    // {
-    //     $this->put('/cliente/delete',
-    //         ['id' => '1']);
-    // }
+    public function testDeleteCliente()
+    {
+        $this->json('PUT', 'cliente/delete', ['id' => '1'])
+        ->seeJsonEquals(['id' => '1']);
+    }
 
-    // //Cadastrar Animal
-    // public function testCreateAnimal()
-    // {
-    //     $this->post('/animal/create',
-    //         ['id' => '1',
-    //         'nome' => 'Krypto',
-    //         'raca' => 'Vira Lata',
-    //         'aniversario' => '30-08-2013',
-    //         'clientes_id' => '1',
-    //         'sexo' => 'Masc',
-    //         'status' => 'Liberado']);
-    // }
+    //Cadastrar Animal
+    public function testCreateAnimal()
+    {
+        $this->json('POST', 'animal/create', ['clientes_id' => '1', 'nome' => 'Krypto'])
+        ->seeJsonEquals(['clientes_id' => '1', 'nome' => 'Krypto']);
+    }
 
-    // //Agendar Consulta
-    // public function testCreateVeterinario()
-    // {
-    //     $this->post('/veterinario/create',
-    //         ['id' => '1',
-    //         'ctps' => '123',
-    //         'clientes_id' => '1']);
-    // }
-
-    // public function testAgendaConsulta()
-    // {
-    //     $this->post('/consulta/create',
-    //         ['id' => '1',
-    //         'data' => '10-10-2016',
-    //         'veterinarios_id' => '1',
-    //         'animals_id' => '1',
-    //         'status' => 'Aguardando Atendimento']);
-    // }
+    //Agendar Consulta
+    public function testCreateVeterinario()
+    {
+        $this->json('POST', 'veterinario/create', ['ctps' => '123', 'clientes_id' => '1'])
+        ->seeJsonEquals(['ctps' => '123', 'clientes_id' => '1']);
+    }
+    public function testCreateConsulta()
+    {
+        $this->json('POST', 'consulta/create', ['data' => '2016-01-01', 'veterinarios_id' => '1', 'animals_id' => '1'])
+        ->seeJsonEquals(['data' => '2016-01-01', 'veterinarios_id' => '1', 'animals_id' => '1']);
+    }
 }
