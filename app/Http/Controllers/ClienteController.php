@@ -17,7 +17,8 @@ class ClienteController extends Controller
         {
             $clienteDAO = new ClienteDAO;
         	$cliente = $clienteDAO->inserir();
-            return $cliente;
+            // return $cliente;
+            return view('Teste', ['name' => 'James']);
         }
         catch(Exception $e)
         {
@@ -30,8 +31,10 @@ class ClienteController extends Controller
         try
         {
             $clienteDAO = new ClienteDAO;
-            $cliente = $clienteDAO->consultar();
-            return $cliente;
+            $cliente = $clienteDAO->consultar($id);
+            Log::error($cliente);
+            return view('Teste', compact('cliente'));
+            // return $cliente;
         }
         catch(Exception $e)
         {

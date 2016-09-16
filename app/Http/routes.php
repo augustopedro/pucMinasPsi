@@ -12,10 +12,11 @@
 */
 
 //Testes do Cliente
-Route::post('cliente/create','ClienteController@adicionarCliente');
+Route::get('cliente/create','ClienteController@adicionarCliente');
+// Route::post('cliente/create','ClienteController@adicionarCliente');
 Route::put('cliente/delete', 'ClienteController@deletarCliente');
 Route::post('cliente/update', 'ClienteController@alterarCliente');
-Route::get('cliente/find', 'ClienteController@procurarCliente');
+Route::get('cliente/procurar/{id}', 'ClienteController@procurarCliente');
 
 //Testes de Veterinário
 Route::post('veterinario/create', 'VeterinarioController@adicionarVeterinario');

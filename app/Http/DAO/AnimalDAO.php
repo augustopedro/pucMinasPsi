@@ -24,11 +24,10 @@ class AnimalDAO implements DAO
             throw new Exception($e->getMessage(), $e->getCode()); 
         }
     }
-    public function consultar()
+    public function consultar($id)
     {
         try
         {
-        	$id = Input::get('id');
         	$animal = Animal::find($id);
             return $animal;
         }
