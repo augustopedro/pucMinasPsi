@@ -7,17 +7,6 @@ use App\Http\Controllers\ClienteController;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic functional test example.
-     *
-     * @return void
-     */
-    // public function testBasicExample()
-    // {
-    //     $this->visit('/')
-    //          ->see('Laravel 5');
-    // }
-
      //Cadastrar Cliente
     public function testCreateCliente()
     {
@@ -28,12 +17,16 @@ class ExampleTest extends TestCase
         );
 
         $response = $this->call('POST', 'cliente/create', $input);
-        $content = $response->getContent();
-        Log::error($content['status']);
-        $data = json_decode($response->getContent());
-        Log::error($data);
-        $this->assertTrue($data);
-         // $this->assertTrue($createController->adicionarCliente());
+        $deuBom = false;
+        if($response->status()==200)
+        {
+            $deuBom = true;
+        }
+        else
+        {
+            $deuBom = false;
+        }
+        $this->assertTrue($deuBom);
     }
 
     //Deletar Cliente
