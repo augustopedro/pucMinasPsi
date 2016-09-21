@@ -29,6 +29,7 @@ class ExampleTest extends TestCase
 
         $response = $this->call('POST', 'cliente/create', $input);
         $content = $response->getContent();
+        Log::error($content['status']);
         $data = json_decode($response->getContent());
         Log::error($data);
         $this->assertTrue($data);
