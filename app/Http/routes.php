@@ -15,14 +15,18 @@ Route::get('cliente/create', function ()
     return view('CadastrarCliente');
 });
 //Testes do Cliente
+<<<<<<< HEAD
 Route::post('cliente/create' , [
 	'uses' => 'ClienteController@adicionarCliente',
 	'as' => 'cliente/create'
 ]);
+=======
+Route::get('cliente/create','ClienteController@adicionarCliente');
+>>>>>>> 0a534890a7f00c03769e108cc974bf46e18cb35f
 // Route::post('cliente/create','ClienteController@adicionarCliente');
 Route::put('cliente/delete', 'ClienteController@deletarCliente');
 Route::post('cliente/update', 'ClienteController@alterarCliente');
-Route::get('cliente/find', 'ClienteController@procurarCliente');
+Route::get('cliente/procurar/{id}', 'ClienteController@procurarCliente');
 
 //Testes de Veterinário
 Route::get('veterinario/create', function () 

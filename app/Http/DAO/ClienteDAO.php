@@ -23,11 +23,10 @@ class ClienteDAO implements DAO
             throw new Exception($e->getMessage(), $e->getCode()); 
         }
     }
-    public function consultar()
+    public function consultar($id)
     {
         try
         {
-            $id = Input::get('id');
             $cliente = Cliente::find($id);
             return $cliente;
         }
