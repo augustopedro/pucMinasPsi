@@ -106,7 +106,7 @@ class ClienteDAO implements DAO
         }
         if(!empty($cpf = Input::get('cpf')))
         {
-            $cliente->cpf = $cpfß;
+            $cliente->cpf = $cpf;
         }
         if(!empty($aniversario = Input::get('aniversario')))
         {

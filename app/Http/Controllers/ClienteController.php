@@ -17,7 +17,11 @@ class ClienteController extends Controller
         {
             $clienteDAO = new ClienteDAO;
         	$cliente = $clienteDAO->inserir();
-            return $cliente;
+            
+            Log::error($cliente);
+            return response()->json(true);
+            // return view('Teste');
+            // return $cliente;
         }
         catch(Exception $e)
         {

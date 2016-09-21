@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form class="col-md-7 col-md-offset-3" method="POST" action='AgendarConsulta.php'>
+    <form class="col-md-7 col-md-offset-3" method="POST" action='{{route('consulta/create')}}'>
         <fieldset>
             <header class="legend">
                 <legend class="">Agendar Consulta</legend>

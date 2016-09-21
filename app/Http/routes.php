@@ -10,27 +10,77 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Route::get('cliente/create', function () 
+{
+    return view('CadastrarCliente');
+});
 //Testes do Cliente
-Route::post('cliente/create','ClienteController@adicionarCliente');
+Route::post('cliente/create' , [
+	'uses' => 'ClienteController@adicionarCliente',
+	'as' => 'cliente/create'
+]);
+// Route::post('cliente/create','ClienteController@adicionarCliente');
 Route::put('cliente/delete', 'ClienteController@deletarCliente');
 Route::post('cliente/update', 'ClienteController@alterarCliente');
 Route::get('cliente/find', 'ClienteController@procurarCliente');
 
 //Testes de Veterinário
-Route::post('veterinario/create', 'VeterinarioController@adicionarVeterinario');
+Route::get('veterinario/create', function () 
+{
+    return view('CadastrarVeterinario');
+});
+//Testes do Cliente
+Route::post('veterinario/create' , [
+	'uses' => 'VeterinarioController@adicionarVeterinario',
+	'as' => 'veterinario/create'
+]);
+// Route::post('veterinario/create', 'VeterinarioController@adicionarVeterinario');
 
 //Testes do Animal
-Route::post('animal/create','AnimalController@adicionarAnimal');
+Route::get('animal/create', function () 
+{
+    return view('CadastrarAnimal');
+});
+Route::post('animal/create' , [
+	'uses' => 'AnimalController@adicionarAnimal',
+	'as' => 'animal/create'
+]);
+// Route::post('animal/create','AnimalController@adicionarAnimal');
 
 //Testes da Consulta
-Route::post('consulta/create', 'ConsultaController@adicionarConsulta');
+Route::get('consulta/create', function () 
+{
+    return view('CadastrarAnimal');
+});
+Route::post('consulta/create' , [
+	'uses' => 'ConsultaController@adicionarConsulta',
+	'as' => 'consulta/create'
+]);
+// Route::post('consulta/create', 'ConsultaController@adicionarConsulta');
+
+//Produto
+Route::get('produto/create', function () 
+{
+    return view('CadastrarProduto');
+});
+Route::post('produto/create' , [
+	'uses' => 'ProdutoController@adicionarProduto',
+	'as' => 'produto/create'
+]);
+// Route::post('produto/create', 'ProdutoController@adicionarProduto');
 
 //Vender
-Route::post('produto/create', 'ProdutoController@adicionarProduto');
-Route::post('venda/create', 'VendaController@adicionarVenda');
-
-Route::get('/', function () 
+Route::get('venda/create', function () 
 {
-    return view('welcome');
+    return view('VenderProduto');
 });
+Route::post('venda/create' , [
+	'uses' => 'VendaController@adicionarVenda',
+	'as' => 'venda/create'
+]);
+// Route::post('venda/create', 'VendaController@adicionarVenda');
+
+// Route::get('/', function () 
+// {
+//     return view('welcome');
+// });

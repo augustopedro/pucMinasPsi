@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form class="col-md-7 col-md-offset-3" method="POST" action='CadastrarCliente.php'>
+    <form class="col-md-7 col-md-offset-3" method="POST" action='{{ route( 'cliente/create' )}}'>
         <fieldset>
             <header class="legend">
                 <legend class="">Cadastrar Cliente</legend>
