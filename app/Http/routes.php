@@ -79,9 +79,3 @@ Route::post('venda/create' , [
 	'uses' => 'VendaController@adicionarVenda',
 	'as' => 'venda/create'
 ]);
-// Route::post('venda/create', 'VendaController@adicionarVenda');
-
-// Route::get('/', function () 
-// {
-//     return view('welcome');
-// });

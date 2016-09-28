@@ -21,6 +21,18 @@ class ProdutoController extends Controller
             Log::error($e);
         }
     }
+    protected function procurarProdutoByName($name)
+    {
+        try
+        {
+            $produto = Produto::where('descricao',$name)->get();
+            return $produto;
+        }
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
+    }
     protected function procurarProduto($id)
     {
         try

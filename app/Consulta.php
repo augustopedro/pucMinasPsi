@@ -15,4 +15,8 @@ class Consulta extends Model
     {
         return $this->belongsTo('App\Veterinario');
     }
+    public function diagnostico()
+    {
+        return $this->hasOne('App\Diagnostico');
+    }
 }

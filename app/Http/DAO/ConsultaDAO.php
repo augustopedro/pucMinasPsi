@@ -4,6 +4,7 @@ namespace App\Http\DAO;
 use App\Http\DAO\DAO;
 use DB;
 use App\Consulta;
+use App\Diagnostico;
 use Illuminate\Support\Facades\Input;
 
 class ConsultaDAO implements DAO
@@ -80,6 +81,13 @@ class ConsultaDAO implements DAO
         if(!empty($animals_id = Input::get('animals_id')))
         {
             $consulta->animals_id = $animals_id;
+        }
+        if(!empty($diagnostico = Input::get('diagnostico')))
+        {
+            $diagnostico = new Diagnostico();
+            $diagnostico->campo = "";
+            $diagnostico->save();
+
         }
         return $consulta;
     }
