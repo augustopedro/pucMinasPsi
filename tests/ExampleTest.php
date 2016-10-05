@@ -9,7 +9,6 @@ use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\VendaController;
-use App\Http\Controllers\DiagnosticoController;
 
 class ExampleTest extends TestCase
 {
@@ -44,8 +43,6 @@ class ExampleTest extends TestCase
         }
         $this->assertTrue($deuBom);
     }
-
-
 
     // Cadastrar Animal
     public function testCreateAnimal()
@@ -98,10 +95,11 @@ class ExampleTest extends TestCase
         $input = array (
             'data' => '2016-10-05',
             'animals_id' => '1',
-            'veterinarios_id' => '1'
+            'veterinarios_id' => '1',
+            'descricao' => 'Teste de Diagnostico'
         );
 
-        $response = $this->call('POST', 'consulta/create', $input);
+        $response = $this->call('POST', 'consulta/update', $input);
         $deubom = false;
         if ($response->status()==200)
         {
@@ -163,26 +161,6 @@ class ExampleTest extends TestCase
         );
 
         $response = $this->call('POST', 'venda/create', $input);
-        $deubom = false;
-        if ($response->status()==200)
-        {
-            $deuBom = true;
-        }
-        else
-        {
-            $deuBom = false;
-        }
-        $this->assertTrue($deuBom);
-    }
-
-    // Teste de Diagnostico
-    public function testCreateDiagnostico()
-    {
-        $input = array (
-            'descricao' => 'TesteDiagnostico',
-        );
-
-        $response = $this->call('POST', 'diagnostico/create', $input);
         $deubom = false;
         if ($response->status()==200)
         {

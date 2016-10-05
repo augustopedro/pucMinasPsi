@@ -94,15 +94,3 @@ Route::put('venda/delete', 'VendaController@deletarVenda');
 Route::post('venda/update', 'VendaController@alterarVenda');
 Route::get('venda/procurar/{id}', 'VendaController@procurarVenda');
 
-// Testes de Diagnóstico
-Route::get('diagnostico/create', function()
-{
-	return view ('Diagnosticar');
-});
-Route::post('diagnostico/create', [
-	'uses' => 'DiagnosticoController@adicionarDiagnostico',
-	'as' => 'diagnostico/create'
-]);
-Route::put('diagnostico/delete', 'DiagnosticoController@deletarDiagnostico');
-Route::post('diagnostico/update', 'DiagnosticoController@alterarDiagnostico');
-Route::get('diagnostico/procurar/{id}', 'DiagnosticoController@procurarDiagnostico');
