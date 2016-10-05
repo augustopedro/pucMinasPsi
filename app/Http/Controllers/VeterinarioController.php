@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
+use App\Http\DAO\VeterinarioDAO;
 
 class VeterinarioController extends Controller
 {
-    protected function adicionarConsulta()
+    protected function adicionarVeterinario()
     {
         try
         {
@@ -22,7 +23,7 @@ class VeterinarioController extends Controller
         }
         
     }
-    protected function procurarConsulta($id)
+    protected function procurarVeterinario($id)
     {
         try
         {
@@ -35,7 +36,7 @@ class VeterinarioController extends Controller
             Log::error($e);
         }
     }
-    protected function alterarConsulta()
+    protected function alterarVeterinario()
     {
         try
         {
@@ -48,7 +49,7 @@ class VeterinarioController extends Controller
             Log::error($e);
         }
     }
-    protected function deletarConsulta($id)
+    protected function deletarVeterinario($id)
     {
         try
         {

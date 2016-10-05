@@ -13,7 +13,7 @@ class ConsultaController extends Controller
     	try
         {
             $consultaDAO = new ConsultaDAO;
-        	$consulta = $consulta->inserir();
+        	$consulta = $consultaDAO->inserir();
             return $consulta;
         }
         catch(Exception $e)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
+use App\Http\DAO\ProdutoDAO;
 
 class ProdutoController extends Controller
 {
@@ -38,7 +39,7 @@ class ProdutoController extends Controller
         try
         {
             $produtoDAO = new ProdutoDAO;
-            $produto = $produtoDAO->Produtor();
+            $produto = $produtoDAO->consultar();
             return $produto;
         }
         catch(Exception $e)
@@ -46,7 +47,7 @@ class ProdutoController extends Controller
             Log::error($e);
         }
     }
-    protected function alterarProduto()Ï
+    protected function alterarProduto()
     {
         try
         {
