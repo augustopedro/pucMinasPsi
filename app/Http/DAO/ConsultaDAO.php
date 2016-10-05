@@ -24,7 +24,7 @@ class ConsultaDAO implements DAO
             throw new Exception($e->getMessage(), $e->getCode()); 
         }
     }
-    public function consultar()
+    public function consultar($id)
     {
         try
         {

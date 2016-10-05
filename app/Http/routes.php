@@ -15,7 +15,6 @@ Route::get('cliente/create', function ()
     return view('CadastrarCliente');
 });
 //Testes do Cliente
-
 Route::post('cliente/create' , [
 	'uses' => 'ClienteController@adicionarCliente',
 	'as' => 'cliente/create'
@@ -35,6 +34,9 @@ Route::post('veterinario/create' , [
 	'uses' => 'VeterinarioController@adicionarVeterinario',
 	'as' => 'veterinario/create'
 ]);
+Route::put('veterinario/delete', 'VeterinarioController@deletarVeterinario');
+Route::post('veterinario/update', 'VeterinarioController@alterarVeterinario');
+Route::get('veterinario/procurar/{id}', 'VeterinarioController@procurarVeterinario');
 // Route::post('veterinario/create', 'VeterinarioController@adicionarVeterinario');
 
 //Testes do Animal
@@ -46,6 +48,9 @@ Route::post('animal/create' , [
 	'uses' => 'AnimalController@adicionarAnimal',
 	'as' => 'animal/create'
 ]);
+Route::put('animal/delete', 'AnimalController@deletarAnimal');
+Route::post('animal/update', 'AnimalController@alterarAnimal');
+Route::get('animal/procurar/{id}', 'AnimalController@procurarAnimal');
 // Route::post('animal/create','AnimalController@adicionarAnimal');
 
 //Testes da Consulta
@@ -57,9 +62,12 @@ Route::post('consulta/create' , [
 	'uses' => 'ConsultaController@adicionarConsulta',
 	'as' => 'consulta/create'
 ]);
+Route::put('consulta/delete', 'ConsultaController@deletarConsulta');
+Route::post('consulta/update', 'ConsultaController@alterarConsulta');
+Route::get('consulta/procurar/{id}', 'ConsultaController@procurarConsulta');
 // Route::post('consulta/create', 'ConsultaController@adicionarConsulta');
 
-//Produto
+// Testes de Produto
 Route::get('produto/create', function () 
 {
     return view('CadastrarProduto');
@@ -68,9 +76,12 @@ Route::post('produto/create' , [
 	'uses' => 'ProdutoController@adicionarProduto',
 	'as' => 'produto/create'
 ]);
+Route::put('produto/delete', 'ProdutoController@deletarProduto');
+Route::post('produto/update', 'ProdutoController@alterarProduto');
+Route::get('produto/procurar/{id}', 'ProdutoController@procurarProduto');
 // Route::post('produto/create', 'ProdutoController@adicionarProduto');
 
-//Vender
+// Testes de Vender
 Route::get('venda/create', function () 
 {
     return view('VenderProduto');
@@ -79,3 +90,19 @@ Route::post('venda/create' , [
 	'uses' => 'VendaController@adicionarVenda',
 	'as' => 'venda/create'
 ]);
+Route::put('venda/delete', 'VendaController@deletarVenda');
+Route::post('venda/update', 'VendaController@alterarVenda');
+Route::get('venda/procurar/{id}', 'VendaController@procurarVenda');
+
+// Testes de Diagnóstico
+Route::get('diagnostico/create', function()
+{
+	return view ('Diagnosticar');
+});
+Route::post('diagnostico/create', [
+	'uses' => 'DiagnosticoController@adicionarDiagnostico',
+	'as' => 'diagnostico/create'
+]);
+Route::put('diagnostico/delete', 'DiagnosticoController@deletarDiagnostico');
+Route::post('diagnostico/update', 'DiagnosticoController@alterarDiagnostico');
+Route::get('diagnostico/procurar/{id}', 'DiagnosticoController@procurarDiagnostico');

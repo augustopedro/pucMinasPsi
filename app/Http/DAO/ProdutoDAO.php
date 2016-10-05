@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Input;
 
 class ProdutoDAO implements DAO
 {
-	protected function inserir()
+	public function inserir()
     {
         try
         {
             DB::beginTransaction();
-            $produto = $this->setProdutoData();
+            $produto = $this->setData();
             $produto->save();
             DB::commit();
             return $produto;
@@ -23,7 +23,7 @@ class ProdutoDAO implements DAO
             throw new Exception($e->getMessage(), $e->getCode()); 
         }
     }
-    protected function consultar()
+    public function consultar($id)
     {
         try
         {
@@ -37,7 +37,7 @@ class ProdutoDAO implements DAO
             throw new Exception($e->getMessage(), $e->getCode()); 
         }        
     }
-    protected function alterar()
+    public function alterar()
     {
         $data =Input::all();    
         try
@@ -52,7 +52,7 @@ class ProdutoDAO implements DAO
             throw new Exception($e->getMessage(), $e->getCode()); 
         }
     }
-    protected function deletar($id)
+    public function deletar($id)
     {
         try
         {
@@ -66,7 +66,7 @@ class ProdutoDAO implements DAO
             throw new Exception($e->getMessage(), $e->getCode()); 
         }
     }
-    protected function setData($produto='')
+    public function setData($produto='')
     {
         if(empty($produto))
         $produto = new Produto();    

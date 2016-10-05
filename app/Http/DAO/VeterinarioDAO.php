@@ -14,7 +14,7 @@ class VeterinarioDAO implements DAO
         try
         {
             DB::beginTransaction();
-            $veterinario = $this->setVeterinarioData();
+            $veterinario = $this->setData();
             $veterinario->save();
             DB::commit();
             return $veterinario;
@@ -24,7 +24,7 @@ class VeterinarioDAO implements DAO
             throw new Exception($e->getMessage(), $e->getCode()); 
         }
     }
-    public function consultar()
+    public function consultar($id)
     {
         try
         {

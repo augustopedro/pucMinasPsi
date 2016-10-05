@@ -15,7 +15,7 @@ class AnimalDAO implements DAO
         {
             DB::beginTransaction();
             $animal = $this->setData();
-            $this->save();
+            $animal->save();
             DB::commit();
             return $animal;
         }
@@ -71,7 +71,7 @@ class AnimalDAO implements DAO
         $animal = new Animal();    
         if(!empty($nome = Input::get('nome')))
         {
-            $animal->nome = $name;
+            $animal->nome = $nome;
         }
         if(!empty($raca = Input::get('raca`')))
         {

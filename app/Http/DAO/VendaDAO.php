@@ -16,7 +16,7 @@ class VendaDAO implements DAO
         try
         {
             DB::beginTransaction();
-            $venda = $this->setVendaData();
+            $venda = $this->setData();
             $venda->save();
             DB::commit();
             return $venda;
@@ -26,7 +26,7 @@ class VendaDAO implements DAO
             throw new Exception($e->getMessage(), $e->getCode()); 
         }
     }
-    public function consultar()
+    public function consultar($id)
     {
         try
         {
@@ -47,7 +47,7 @@ class VendaDAO implements DAO
         {                                       
         	$venda = Venda::find(Input::get('id')); 
             $venda = $this->setData($venda);
-            $venda->save()
+            $venda->save();
             return $venda;
         }
         catch(Exception $e) 
