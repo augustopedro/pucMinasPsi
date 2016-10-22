@@ -16,7 +16,9 @@ class ProdutoController extends Controller
         {
             $produtoDAO = new ProdutoDAO;
             $produto = $produtoDAO->inserir();
-            return $produto;
+            
+            return redirect('/');
+            //return $produto;
         }
         catch(Exception $e)
         {

@@ -15,7 +15,8 @@ class VeterinarioController extends Controller
         {
             $veterinarioDAO = new VeterinarioDAO;
             $veterinario = $veterinarioDAO->inserir();
-            return $veterinario;
+           
+           return redirect('/');
         }
         catch(Exception $e)
         {

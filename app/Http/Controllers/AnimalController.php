@@ -17,7 +17,8 @@ class AnimalController extends Controller
             $animalDAO = new AnimalDAO;
         	$animal = $animalDAO->inserir();
             // return view('Teste', $animal->nome);
-            return $animal;
+            //return $animal;
+            return redirect('/');
         }
         catch(Exception $e)
         {

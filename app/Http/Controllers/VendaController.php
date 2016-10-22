@@ -15,7 +15,8 @@ class VendaController extends Controller
         {
             $vendaDAO = new VendaDAO;
             $venda = $vendaDAO->inserir();
-            return $venda;
+            return redirect('/');
+            //return $venda;
         }
         catch(Exception $e)
         {

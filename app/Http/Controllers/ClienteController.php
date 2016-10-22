@@ -23,6 +23,7 @@ class ClienteController extends Controller
             // return response()->json(true);
             // return view('Teste');
             // return $cliente;
+            return redirect('/');
         }
         catch(Exception $e)
         {

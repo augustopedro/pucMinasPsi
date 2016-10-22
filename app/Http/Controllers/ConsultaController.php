@@ -14,7 +14,9 @@ class ConsultaController extends Controller
         {
             $consultaDAO = new ConsultaDAO;
         	$consulta = $consultaDAO->inserir();
-            return $consulta;
+            return redirect('/');
+
+            //return $consulta;
         }
         catch(Exception $e)
         {
