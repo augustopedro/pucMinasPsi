@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
-
+@extends('Bootstrap')
 <head>
     <title>Cadastrar Animal</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bg {
+            position: relative;
+            background: #fff url("slide.jpg") center center;/*slide.jpg =>you image*/    
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>

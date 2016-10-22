@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\Http\Requests;
 use App\Http\DAO\ProdutoDAO;
+
+
 
 class ProdutoController extends Controller
 {
@@ -38,8 +39,9 @@ class ProdutoController extends Controller
     {
         try
         {
+            // Log::erro($id);
             $produtoDAO = new ProdutoDAO;
-            $produto = $produtoDAO->consultar();
+            $produto = $produtoDAO->consultar($id);
             return $produto;
         }
         catch(Exception $e)

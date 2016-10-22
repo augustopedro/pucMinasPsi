@@ -85,7 +85,7 @@ class ConsultaDAO implements DAO
         if(!empty($diagnostico = Input::get('diagnostico')))
         {
             $diagnostico = new Diagnostico();
-            $diagnostico->campo = "";
+            $diagnostico->campo = $diagnostico;
             $diagnostico->save();
 
         }

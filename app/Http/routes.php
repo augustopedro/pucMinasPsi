@@ -56,7 +56,7 @@ Route::get('animal/procurar/{id}', 'AnimalController@procurarAnimal');
 //Testes da Consulta
 Route::get('consulta/create', function () 
 {
-    return view('CadastrarAnimal');
+    return view('AgendarConsulta');
 });
 Route::post('consulta/create' , [
 	'uses' => 'ConsultaController@adicionarConsulta',
@@ -90,6 +90,11 @@ Route::post('venda/create' , [
 	'uses' => 'VendaController@adicionarVenda',
 	'as' => 'venda/create'
 ]);
+
+Route::get('teste', function () 
+{
+    return view('Menu');
+});
 Route::put('venda/delete', 'VendaController@deletarVenda');
 Route::post('venda/update', 'VendaController@alterarVenda');
 Route::get('venda/procurar/{id}', 'VendaController@procurarVenda');

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+@extends('Bootstrap')
 <head>
     <title>Agendar Consulta</title>
     <meta charset="utf-8">

@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
-
+@extends('Bootstrap')
 <head>
     <title>Cadastrar Diagnóstico</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <form class="col-md-7 col-md-offset-3" method="POST" action='{{route('diagnostico/create')}}'>
+    <form class="col-md-7 col-md-offset-3" method="POST" action=''>
         <fieldset>
             <header class="legend">
                 <legend class="">Cadastrar Diagnóstico</legend>
