@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\DAO\ConsultaDAO;
 use App\Cliente;
 use App\Veterinario;
+use App\Animal;
 use Log;
 class ConsultaController extends Controller
 {
@@ -46,8 +47,10 @@ class ConsultaController extends Controller
             $veterinarios = Veterinario::with('cliente')
             ->select('id', 'clientes_id')
             ->get();
+
+            $animals = Animal::all();
             // return $veterinarios;
-            return view('AgendarConsulta', ['veterinarios' => $veterinarios]);
+            return view('AgendarConsulta', ['veterinarios' => $veterinarios, 'animals' => $animals]);
             // return $veterinarios;
         }
         catch(Exception $e)

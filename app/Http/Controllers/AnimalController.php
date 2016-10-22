@@ -26,6 +26,19 @@ class AnimalController extends Controller
         }
         
     }
+    protected function getAllAnimals($id)
+    {
+        try
+        {
+            $animalDAO = new AnimalDAO;
+            $animal = $animalDAO->consultar();
+            return $animal;
+        }
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
+    }
     protected function procurarAnimal($id)
     {
         try

@@ -31,18 +31,18 @@
                         <option value= "{{$veterinario->id}}">{{$veterinario->cliente->nome}}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="control-group">
+                <div class="control-group">
+                <select name="animals_id" id="animals_id">
+                @foreach ($animals as $animal)
+                        <option value= "{{$animal->id}}">{{$animal->nome}}</option>
+                    @endforeach
+                </select>
 <!--                 <select class="control-group"  name ="clientes_id" id="clientes_id">
                     
                 </select> -->
             </div>
-            <div class="control-group">
-                <!-- Animal -->
-                <label class="control-label ">Animal</label>
-                <div class="controls">
-                    <input type="text" id="idAnimal" name="animals_id" class="input-xlarge" size="5" required>
-                    <br>
-                    </br>
-                </div>
             </div>
             <div class="control-group">
                 <!-- Submit -->
