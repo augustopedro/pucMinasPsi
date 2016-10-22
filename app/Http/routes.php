@@ -61,6 +61,7 @@ Route::post('consulta/create' , [
 ]);
 Route::put('consulta/delete', 'ConsultaController@deletarConsulta');
 Route::post('consulta/update', 'ConsultaController@alterarConsulta');
+Route::get('consulta/update','ConsultaController@getAllVets');
 Route::get('consulta/procurar/{id}', 'ConsultaController@procurarConsulta');
 // Route::post('consulta/create', 'ConsultaController@adicionarConsulta');
 

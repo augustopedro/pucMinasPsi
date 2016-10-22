@@ -31,8 +31,24 @@ class ConsultaController extends Controller
     {
         try
         {
+            //NO RETORNO RETORNAR UMA NOVA VIEW QUE CONTERA TODOS OS DADOS DA CONSULTA DE FORMA EDITAVEL
             $consultaDAO = new ConsultaDAO;
             $consulta = $consultaDAO->consultar();
+            return $consulta;
+        }
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
+    }
+    //Pegar todas as consultas, exibir na nova view que vai ser criada 
+    //Passar o objeto 'consultas' e popular um dropdown igual na AgendaConsulta
+    //Quando clicar, exibir informacao da consulta
+    protected function getConsulta()
+    {
+        try
+        {
+            $consulta = Consulta::all();
             return $consulta;
         }
         catch(Exception $e)
