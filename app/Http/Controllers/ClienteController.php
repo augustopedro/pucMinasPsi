@@ -23,7 +23,8 @@ class ClienteController extends Controller
             // return response()->json(true);
             // return view('Teste');
             // return $cliente;
-            return redirect('/');
+            // return redirect('/');
+            return redirect('/')->with('cadastro', 'Cadastro realizado com sucesso!');
         }
         catch(Exception $e)
         {
@@ -31,6 +32,7 @@ class ClienteController extends Controller
         }
         
     }
+    
     protected function procurarCliente($id)
     {
         try

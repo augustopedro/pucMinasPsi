@@ -15,7 +15,7 @@ class Cliente extends Model
     }
     public function veterinario()
     {
-        return $this->hasOne('App\Veterinario');
+        return $this->hasOne('App\Veterinario', 'clientes_id','id');
     }
     public function venda()
     {

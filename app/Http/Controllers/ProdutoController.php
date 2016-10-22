@@ -17,7 +17,7 @@ class ProdutoController extends Controller
             $produtoDAO = new ProdutoDAO;
             $produto = $produtoDAO->inserir();
             
-            return redirect('/');
+            return redirect('/')->with('cadastro', 'Cadastro realizado com sucesso!');
             //return $produto;
         }
         catch(Exception $e)

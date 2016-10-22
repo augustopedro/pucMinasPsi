@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\DAO\ConsultaDAO;
-
+use App\Cliente;
+use App\Veterinario;
+use Log;
 class ConsultaController extends Controller
 {
 	protected function adicionarConsulta()
@@ -13,6 +15,7 @@ class ConsultaController extends Controller
     	try
         {
             $consultaDAO = new ConsultaDAO;
+            Log::error('AA');
         	$consulta = $consultaDAO->inserir();
             return redirect('/');
 
@@ -30,6 +33,22 @@ class ConsultaController extends Controller
             $consultaDAO = new ConsultaDAO;
             $consulta = $consultaDAO->consultar();
             return $consulta;
+        }
+        catch(Exception $e)
+        {
+            Log::error($e);
+        }
+    }
+    protected function getAllVets()
+    {
+        try
+        {
+            $veterinarios = Veterinario::with('cliente')
+            ->select('id', 'clientes_id')
+            ->get();
+            // return $veterinarios;
+            return view('AgendarConsulta', ['veterinarios' => $veterinarios]);
+            // return $veterinarios;
         }
         catch(Exception $e)
         {

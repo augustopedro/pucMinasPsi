@@ -10,15 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () 
-{
-    return view('index');
-});
-
-
-
-
 Route::get('cliente/create', function () 
 {
     return view('CadastrarCliente');
@@ -63,10 +54,7 @@ Route::get('animal/procurar/{id}', 'AnimalController@procurarAnimal');
 // Route::post('animal/create','AnimalController@adicionarAnimal');
 
 //Testes da Consulta
-Route::get('consulta/create', function () 
-{
-    return view('AgendarConsulta');
-});
+Route::get('consulta/create','ConsultaController@getAllVets');
 Route::post('consulta/create' , [
 	'uses' => 'ConsultaController@adicionarConsulta',
 	'as' => 'consulta/create'

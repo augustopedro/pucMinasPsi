@@ -76,9 +76,9 @@ class VeterinarioDAO implements DAO
         {
             $veterinario->ctps = $ctps;
         }
-        if(!empty($clientes_id = Input::get('clientes_id')))
+        if(!empty($cliente_id = Input::get('cliente_id')))
         {
-            $veterinario->clientes_id = $clientes_id;
+            $veterinario->cliente_id = $cliente_id;
         }
         return $veterinario;
     }

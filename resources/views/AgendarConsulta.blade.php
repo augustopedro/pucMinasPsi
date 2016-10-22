@@ -25,13 +25,15 @@
                 </div>
             </div>
             <div class="control-group">
-                <!-- Veterinário Responsável -->
-                <label class="control-label">Veterinário Responsável</label>
-                <div class="controls">
-                    <input type="text" id="idVet" name="veterinarios_id" class="input-xlarge " size="5" required>
-                    <br>
-                    </br>
-                </div>
+
+                <select name="veterinarios_id" id="veterinarios_id">
+                @foreach ($veterinarios as $veterinario)
+                        <option value= "{{$veterinario->id}}">{{$veterinario->cliente->nome}}</option>
+                    @endforeach
+                </select>
+<!--                 <select class="control-group"  name ="clientes_id" id="clientes_id">
+                    
+                </select> -->
             </div>
             <div class="control-group">
                 <!-- Animal -->

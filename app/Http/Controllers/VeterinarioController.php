@@ -16,7 +16,7 @@ class VeterinarioController extends Controller
             $veterinarioDAO = new VeterinarioDAO;
             $veterinario = $veterinarioDAO->inserir();
            
-           return redirect('/');
+           return redirect('/')->with('cadastro', 'Cadastro realizado com sucesso!');
         }
         catch(Exception $e)
         {

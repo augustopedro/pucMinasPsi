@@ -6,6 +6,11 @@
 </head>
 
 <body>
+@if(Session::has('cadastro'))
+    <div class="alert alert-info">
+      {{Session::get('cadastro')}}
+    </div>
+@endif
 <img src="logoPet.jpg" alt="..." class="img-rounded" height="42" width="42">
 <h3 class="">Pet Shop</h3>
 <div class="row">
