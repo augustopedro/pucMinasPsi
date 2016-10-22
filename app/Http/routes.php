@@ -88,9 +88,9 @@ Route::post('venda/create' , [
 	'as' => 'venda/create'
 ]);
 
-Route::get('teste', function () 
+Route::get('/', function () 
 {
-    return view('Menu');
+    return view('index');
 });
 Route::put('venda/delete', 'VendaController@deletarVenda');
 Route::post('venda/update', 'VendaController@alterarVenda');
