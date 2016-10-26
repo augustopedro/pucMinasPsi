@@ -44,12 +44,22 @@
             </div>
         </fieldset>
     </form>
-        <form class="col-xs-3" method="GET" action='{{ route( 'consulta/create' )}}'>
+    <form class="col-xs-3" method="GET" action='{{ route( 'consulta/create' )}}'>
         <fieldset>
             <div class="control-group">
                 <!-- Submit -->
                 <div class="controls">
                     <input type="submit" name="submit" value="Agendar Consulta" class="btn btn-primary btn-lg active">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <form class="col-xs-3" method="GET" action='{{ route( 'consulta/update' )}}'>
+        <fieldset>
+            <div class="control-group">
+                <!-- Submit -->
+                <div class="controls">
+                    <input type="submit" name="submit" value="Consultar" class="btn btn-primary btn-lg active">
                 </div>
             </div>
         </fieldset>
