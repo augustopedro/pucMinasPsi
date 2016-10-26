@@ -10,6 +10,10 @@
     <div class="alert alert-info">
       {{Session::get('cadastro')}}
     </div>
+@elseif(Session::has('consulta'))
+    <div class="alert alert-info">
+      {{Session::get('consulta')}}
+    </div>
 @endif
 <img src="logoPet.jpg" alt="..." class="img-rounded" height="42" width="42">
 <h3 class="">Pet Shop</h3>

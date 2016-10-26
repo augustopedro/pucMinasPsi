@@ -11,7 +11,7 @@ class Animal extends Model
     
     public function cliente()
     {
-        return $this->belongsTo('App\Cliente');
+        return $this->belongsTo('App\Cliente', 'clientes_id', 'id');
     }
     public function consulta()
     {

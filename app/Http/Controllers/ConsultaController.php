@@ -8,7 +8,10 @@ use App\Http\DAO\ConsultaDAO;
 use App\Cliente;
 use App\Veterinario;
 use App\Animal;
+use App\Consulta;
 use Log;
+use Illuminate\Support\Facades\Input;
+
 class ConsultaController extends Controller
 {
 	protected function adicionarConsulta()
@@ -16,7 +19,7 @@ class ConsultaController extends Controller
     	try
         {
             $consultaDAO = new ConsultaDAO;
-            Log::error('AA');
+            // Log::error('AA');
         	$consulta = $consultaDAO->inserir();
             return redirect('/');
 
@@ -27,14 +30,20 @@ class ConsultaController extends Controller
             Log::error($e);
         }
     }
-    protected function procurarConsulta($id)
+    protected function procurarConsulta()
     {
         try
         {
             //NO RETORNO RETORNAR UMA NOVA VIEW QUE CONTERA TODOS OS DADOS DA CONSULTA DE FORMA EDITAVEL
-            $consultaDAO = new ConsultaDAO;
-            $consulta = $consultaDAO->consultar();
-            return $consulta;
+            $id = Input::get('id');
+            $consulta = Consulta::find($id)->with(['animal' =>function($query) 
+            {
+                $query->with('cliente');
+            }])
+            ->first();
+            // return $consulta;
+            return view('Consultar', ['consulta' => $consulta]);
+            // return $consulta;
         }
         catch(Exception $e)
         {
@@ -44,12 +53,19 @@ class ConsultaController extends Controller
     //Pegar todas as consultas, exibir na nova view que vai ser criada 
     //Passar o objeto 'consultas' e popular um dropdown igual na AgendaConsulta
     //Quando clicar, exibir informacao da consulta
-    protected function getConsulta()
+    protected function getConsultas()
     {
         try
         {
-            $consulta = Consulta::all();
-            return $consulta;
+            $consultas = Consulta::with(['animal' =>function($query) 
+            {
+                $query->with('cliente');
+            }])
+            ->get();
+            // Log::error($consultas);
+            // return $consulta[0]->animal->cliente->nome;
+            return view('Consultar', ['consultas' => $consultas]);
+            // return view('Consultar', ['veterinarios' => $veterinarios, 'animals' => $animals]);
         }
         catch(Exception $e)
         {
@@ -80,7 +96,8 @@ class ConsultaController extends Controller
         {
             $consultaDAO = new ConsultaDAO;
             $consulta = $consultaDAO->alterar();
-            return $consulta;
+            return redirect('/')->with('consulta', 'Consulta alterada com sucesso!');
+            // return $consulta;
         }
         catch(Exception $e)
         {

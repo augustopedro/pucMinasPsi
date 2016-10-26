@@ -94,12 +94,10 @@ class ExampleTest extends TestCase
     {
         $input = array (
             'data' => '2016-10-05',
-            'animals_id' => '1',
-            'veterinarios_id' => '1',
-            'descricao' => 'Teste de Diagnostico'
+            'animals_id' => '1'
         );
 
-        $response = $this->call('POST', 'consulta/update', $input);
+        $response = $this->call('POST', 'consulta/create', $input);
         $deubom = false;
         if ($response->status()==200)
         {

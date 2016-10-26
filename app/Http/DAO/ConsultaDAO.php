@@ -82,12 +82,19 @@ class ConsultaDAO implements DAO
         {
             $consulta->animals_id = $animals_id;
         }
-        if(!empty($diagnostico = Input::get('diagnostico')))
+        if(!empty($descricao = Input::get('descricao')))
         {
             $diagnostico = new Diagnostico();
-            $diagnostico->campo = $diagnostico;
+            $diagnostico->descricao = $descricao;
             $diagnostico->save();
-
+            $consulta->diagnosticos_id = $diagnostico->id;
+        }
+        else if (!empty($justificativa = Input::get('justificativa')))
+        {
+            $diagnostico = new Diagnostico();
+            $diagnostico->justificativa = $justificativa;
+            $diagnostico->save();
+            $consulta->diagnosticos_id = $diagnostico->id;
         }
         return $consulta;
     }

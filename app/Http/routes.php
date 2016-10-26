@@ -60,9 +60,17 @@ Route::post('consulta/create' , [
 	'as' => 'consulta/create'
 ]);
 Route::put('consulta/delete', 'ConsultaController@deletarConsulta');
-Route::post('consulta/update', 'ConsultaController@alterarConsulta');
-Route::get('consulta/update','ConsultaController@getAllVets');
-Route::get('consulta/procurar/{id}', 'ConsultaController@procurarConsulta');
+// Route::post('consulta/update', 'ConsultaController@alterarConsulta');
+Route::post('consulta/update' , [
+	'uses' => 'ConsultaController@alterarConsulta',
+	'as' => 'consulta/update'
+]);
+Route::post('consulta/procurar' , [
+	'uses' => 'ConsultaController@procurarConsulta',
+	'as' => 'consulta/procurar'
+]);
+Route::get('consulta/update','ConsultaController@getConsultas');
+// Route::post('consulta/procurar', 'ConsultaController@procurarConsulta');
 // Route::post('consulta/create', 'ConsultaController@adicionarConsulta');
 
 // Testes de Produto
